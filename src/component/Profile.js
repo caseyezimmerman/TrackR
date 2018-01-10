@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import {ScrollView, Image, View, Text, TextInput, StyleSheet} from 'react-native';
+import {TouchableOpacity,ScrollView, Image, View, Text, TextInput, StyleSheet} from 'react-native';
 import { connect } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import PhotoAction from '../actions/PhotoAction';
 import ToggleSwitch from 'toggle-switch-react-native'
+import LogoutAction from '../actions/LogoutAction';
+import { bindActionCreators } from 'redux';
 
 class Profile extends Component{
+
+  userLogout(e, navigator) {
+    console.log(navigator)
+    e.preventDefault();
+    this.props.onlogout(navigator);
+  }
+
   render(){
     var name = ""
     if(this.props.auth.userInfo != undefined){
@@ -68,12 +77,19 @@ class Profile extends Component{
             />
           </View>
           <Text style={styles.profile2}>Local Weather</Text>
-          <Text>  </Text>
+          <Text></Text>
           <Ionicons
             name={'ios-partly-sunny'}
-            size={100}
+            size={60}
             style={styles.icon2}>
           </Ionicons>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={(e) =>
+              this.userLogout(e, this.props.navigation)}
+          >
+            <Text style={styles.signup}>Logout</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     )
@@ -89,11 +105,12 @@ const mapStateToProps = (state, ownProps) => {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    uploadPhoto: PhotoAction
+    uploadPhoto: PhotoAction,
+    onlogout: LogoutAction
   }, dispatch)
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
 
 const styles = StyleSheet.create({
   toggle: {
@@ -138,6 +155,25 @@ const styles = StyleSheet.create({
     marginTop:20,
     left:160
   },
+  button: {
+    height: 45,
+    width: '80%',
+    borderWidth: 6,
+    borderColor: 'transparent',
+    borderRadius: 30,
+    backgroundColor: '#71afd6',
+    marginLeft: 35,
+    marginTop: 10,
+    shadowOffset: { width: 3, height: 3, },
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+  },
+  signup: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'slategrey',
+    backgroundColor: 'transparent',
+  }
 })
 
 

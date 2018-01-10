@@ -36,9 +36,3 @@ function LoginAction(email,password,navigator) {
 };
 
 export default LoginAction
-
-export const logout = () => {
-    return {
-        type: 'LOGOUT'
-    };
-};

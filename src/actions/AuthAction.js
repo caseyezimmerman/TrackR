@@ -2,7 +2,6 @@ import axios from 'axios'
 
 function SignUpAction(name,email,password,navigator){
 	var finalPromise = new Promise((resolve, reject)=>{
-
 		var axiosPromise = axios({
 		method: 'POST',
 		url: 'http://localhost:3000/signup',
@@ -14,7 +13,6 @@ function SignUpAction(name,email,password,navigator){
 		})
 		// pass desired route as string
 		.then((data)=>{
-			console.log(data.data.name)
 			const theData = data.data;
 			if (theData.msg === "emailTaken") {
 				navigator.navigate('SignUp', 
@@ -48,9 +46,3 @@ function SignUpAction(name,email,password,navigator){
 };
 
 export default SignUpAction;
-
-export const logout = () => {
-    return {
-		type: 'LOGOUT'
-    };
-};
