@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		marginTop: 40,
-		color: 'white'
+		color: 'white',
+		marginLeft:5
 
 	},
 	input: {
