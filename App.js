@@ -35,7 +35,7 @@ const NavBarConfig = {
   SignUp: { 
     screen: SignUp,
     navigationOptions:{
-      // tabBarVisible: false,
+      tabBarVisible: false,
       tabBarLabel: 'SignUp',
       tabBarIcon: ({ focused }) => (
         <Ionicons
