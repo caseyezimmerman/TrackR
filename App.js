@@ -21,7 +21,7 @@ const NavBarConfig = {
   Login:{
     screen: Login,
     navigationOptions: {
-      // tabBarVisible: false,
+      tabBarVisible: false,
       tabBarLabel: 'Login',
       tabBarIcon: ({ focused }) => (
         <Ionicons
